@@ -1,0 +1,171 @@
+﻿<Window x:Class="Procapita.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Procapita"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Stödsystem, Vård och Omsorg - Robin Bitoreq" Height="480" Width="640" Icon="Resource/stodsystem.ico">
+    <Window.Resources>
+
+
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Arkiv"></MenuItem>
+            <MenuItem Header="_Redigera"></MenuItem>
+            <MenuItem Header="_Verktyg"></MenuItem>
+            <MenuItem Header="_Fönster"></MenuItem>
+            <MenuItem Header="_Hjälp"></MenuItem>
+        </Menu>
+        <ToolBar Name="tbrMain"  DockPanel.Dock="Top" Height="30" ToolBarTray.IsLocked="True">
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/sqarestop.ico"></Image>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="DarkGray" />
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/search.ico"></Image>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="DarkGray" />
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/cut.ico"></Image>
+            </Button>
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/copy.ico"></Image>
+            </Button>
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/paste.ico"></Image>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="DarkGray" />
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/sliders.ico"></Image>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="DarkGray" />
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/info.ico"></Image>
+            </Button>
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="2" Stroke="DarkGray" />
+            <Button>
+                <Image Width="20" Height="20" Source="Resource/question.ico"></Image>
+            </Button>
+
+        </ToolBar>
+        <Grid Name="grdMain">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <DockPanel  Grid.Column="0" Margin="2">
+                <ToolBar DockPanel.Dock="Top" Grid.Column="0" Height="30" ToolBarTray.IsLocked="True">
+                    <Image Width="20" Height="20" Source="Resource/01.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/02.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/03.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/04.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/05.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/06.ico"></Image>
+                    <Image Width="20" Height="20" Source="Resource/07.ico"></Image>
+                </ToolBar>
+                <Grid Height="32" DockPanel.Dock="Top" Margin="2">
+                    <StackPanel Orientation="Horizontal">
+                    </StackPanel>
+                    <ToolBar Height="32" ToolBarTray.IsLocked="True">
+                        <Label Width="60">Person</Label>
+                        <TextBox Name="txtYear" Width="26" Height="26" BorderBrush="DarkGray">19</TextBox>
+                        <TextBox Width="120" Height="26" BorderBrush="DarkGray" Margin="10,0,10,0" Name="txtPersonNr" TextChanged="txtPersonNr_TextChanged"></TextBox>
+                        <Border  BorderBrush="DarkGray" CornerRadius="3,3,3,3">
+                            <Button Width="26" Height="26" Name="btnSearchByPersonalNumber" Click="btnSearchByPersonalNumber_Click">
+                                <Image Width="20" Height="20" Source="Resource/binoculars.ico"></Image>
+                            </Button>
+                        </Border>
+                        <Image Source="Resource/blackbell.ico"></Image>
+                    </ToolBar>                            
+
+                </Grid>
+                <StatusBar Name="sbStatus" Grid.Column="0" DockPanel.Dock="Bottom">
+                    <StatusBarItem Name="sbiCurrentUser" Width="100">RobBit</StatusBarItem>
+                    <StatusBarItem Name="sbiCurrentRole">Handläggare</StatusBarItem>
+                </StatusBar>
+
+                <ToggleButton Name="tglMyPages" DockPanel.Dock="Bottom" Height="30" Checked="tglMyPages_Checked">Mina Sidor</ToggleButton>
+                <ToggleButton Name="tglMyUsers" DockPanel.Dock="Bottom" Height="30" Checked="tglMyUsers_Checked">Mina Brukare</ToggleButton>
+                <ToggleButton Name="tglMyCases" DockPanel.Dock="Bottom" Height="30" Checked="tglMyCases_Checked">Mina Ärenden</ToggleButton>
+                <TreeView Name="tvUsers">
+                    <TreeView.Resources>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Name="img"
+
+                                   Width="20"
+
+                                   Height="20"
+
+                                   Stretch="Fill"
+
+                                   Source="Resource/folderClosed.ico"/>
+                                            <TextBlock Text="{Binding}" Margin="5,0" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>
+                    <TreeViewItem IsExpanded="True" Header="Mina Brukare">
+                        <TreeViewItem Header="Observera">
+                            
+                        </TreeViewItem>
+                        <TreeViewItem Header="Om Procapita">
+                          <TreeViewItem></TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Aktuellt" IsSelected="True">
+                        </TreeViewItem>
+                    </TreeViewItem>
+                        
+                </TreeView>
+            </DockPanel>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <TextBlock Grid.Column="2" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Right side</TextBlock>
+            <TabControl Name="tabRight" Grid.Column="2">
+                <TabItem Name="tbiAktuellt"  Header="Aktuellt">
+                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left">
+                        <Span Name="spnCurrentDate"><Bold><Underline>Torsdag, 18 Januari 2018</Underline></Bold></Span>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Span><Bold><Underline>Anteckningar    (0)</Underline></Bold></Span>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Span><Bold><Underline>Nya Meddelanden    (0)</Underline></Bold></Span>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Span><Bold><Underline>Bevakningar    (0)</Underline></Bold></Span>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Span><Bold><Underline>Ej Signerad dokumentation</Underline></Bold></Span>
+                        <LineBreak></LineBreak>
+                        <LineBreak></LineBreak>
+                        <Span><Bold><Underline>Ny dokumentation på mina personer</Underline></Bold></Span>
+                        
+                    </TextBlock>
+                </TabItem>
+                <TabItem Header="Beslut">
+                    <Grid Background="#f1f1f1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="928"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="517"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        
+                        <Image Source="/Resource/besluttab.png" Grid.Column="0" Width="928"></Image>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
